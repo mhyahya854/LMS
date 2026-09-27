@@ -1,0 +1,46 @@
+# User-owned academic data must never enter the public source repository.
+/Academic World/
+/Academic Vault/
+/Notes and Studies/
+/Private Data/
+/Local Data/
+/Reports/
+
+# Local application/runtime state and recoverable backups.
+/runtime/
+/bench/
+/sites/
+/backups/
+/diagnostics/
+/downloads/
+/tmp/
+/temp/
+*.sqlite
+*.sqlite3
+*.db
+*.pst
+*.ost
+*.mbox
+
+# Secrets and machine-specific configuration.
+.env
+.env.*
+!.env.example
+!.env.template
+**/site_config.json
+**/common_site_config.json
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+
+# Generated local indexes, caches, logs, and IDE state.
+/.derived/
+/.cache/
+/.index/
+/.vector/
+*.log
+.DS_Store
+Thumbs.db
