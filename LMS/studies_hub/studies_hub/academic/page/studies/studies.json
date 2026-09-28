@@ -1,0 +1,10 @@
+{
+ "doctype": "Page",
+ "module": "Academic",
+ "name": "studies",
+ "page_name": "studies",
+ "roles": [{"role": "System Manager"}],
+ "standard": "Yes",
+ "system_page": 1,
+ "title": "Studies Hub"
+}

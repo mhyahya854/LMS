@@ -1,0 +1,10 @@
+app_name = "studies_hub"
+app_title = "Studies Hub"
+app_publisher = "Studies Workspace"
+app_description = "Local-first canonical academic course and resource management"
+app_email = "studies@example.invalid"
+app_license = "MIT"
+app_icon = "octicon octicon-book"
+app_color = "grey"
+
+after_migrate = "studies_hub.install.ensure_unique_constraints"

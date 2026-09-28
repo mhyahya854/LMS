@@ -1,0 +1,26 @@
+{
+ "autoname": "UUID",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": ["canonical_course", "academic_resource", "original_filename", "vault_relative_path", "sha256", "byte_size", "content_type", "data_origin", "source_course_mapping", "source_system", "external_object_id", "source_url"],
+ "fields": [
+  {"fieldname": "canonical_course", "fieldtype": "Link", "in_list_view": 1, "label": "Canonical course", "options": "Canonical Course", "reqd": 1},
+  {"fieldname": "academic_resource", "fieldtype": "Link", "label": "Academic resource", "options": "Academic Resource"},
+  {"fieldname": "original_filename", "fieldtype": "Data", "in_list_view": 1, "label": "Original filename", "length": 255, "reqd": 1},
+  {"fieldname": "vault_relative_path", "fieldtype": "Small Text", "label": "Vault relative path", "reqd": 1},
+  {"fieldname": "sha256", "fieldtype": "Data", "in_list_view": 1, "label": "SHA-256", "length": 64, "reqd": 1},
+  {"fieldname": "byte_size", "fieldtype": "Long Int", "label": "Size (bytes)", "reqd": 1},
+  {"fieldname": "content_type", "fieldtype": "Data", "label": "Content type"},
+  {"default": "Personal", "fieldname": "data_origin", "fieldtype": "Select", "label": "Data origin", "options": "Source-derived\nPersonal\nTest data", "reqd": 1},
+  {"fieldname": "source_course_mapping", "fieldtype": "Link", "label": "Source course mapping", "options": "External Course Mapping", "read_only": 1},
+  {"fieldname": "source_system", "fieldtype": "Select", "label": "Source system", "options": "APSpace\nMoodle\nMicrosoft Teams\nMicrosoft 365\nManual Import\nOther", "read_only": 1},
+  {"fieldname": "external_object_id", "fieldtype": "Data", "label": "External object ID", "read_only": 1},
+  {"fieldname": "source_url", "fieldtype": "Data", "label": "Source URL", "read_only": 1}
+ ],
+ "module": "Academic",
+ "name": "Academic File",
+ "permissions": [{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1}],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

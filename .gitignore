@@ -1,12 +1,37 @@
-# User-owned academic data must never enter the public source repository.
+# Studies public-code boundary
+#
+# A Git repository cannot track a sibling such as ../Academic World. The rules
+# below defend against accidental in-repository copies; the physical sibling
+# boundary is the primary control.
 /Academic World/
 /Academic Vault/
 /Notes and Studies/
 /Private Data/
 /Local Data/
 /Reports/
+/Backups/
 
-# Local application/runtime state and recoverable backups.
+# Intentionally retained local vendor checkouts. Their upstream provenance is
+# recorded in Documentation/VENDOR_SOURCES.md; they are never embedded or
+# staged by the outer Codebase repository.
+/Vendor/
+/LMS/frappe-lms/
+/LMS/frappe_docker/
+
+# Local runtime state: machine credentials, Docker/Bench state, site files,
+# uploads, logs, installers, derived data, and recovery artifacts.
+/LMS/runtime/.env
+/LMS/runtime/.env.*
+!/LMS/runtime/.env.example
+!/LMS/runtime/.env.template
+/LMS/runtime/bench/
+/LMS/runtime/logs/
+/LMS/runtime/installers/
+/LMS/runtime/backups/
+/LMS/runtime/diagnostics/
+/LMS/runtime/downloads/
+/LMS/runtime/tmp/
+/LMS/runtime/temp/
 /runtime/
 /bench/
 /sites/
@@ -15,14 +40,18 @@
 /downloads/
 /tmp/
 /temp/
+
+# Private archives, databases, mail, credentials, and runtime manifests.
 *.sqlite
 *.sqlite3
 *.db
+*.db-journal
+*.sql
 *.pst
 *.ost
 *.mbox
-
-# Secrets and machine-specific configuration.
+*.eml
+*.msg
 .env
 .env.*
 !.env.example
@@ -35,12 +64,28 @@
 *.pfx
 *.crt
 *.cer
+*.kdbx
+credentials.json
+token.json
+cookies.txt
 
-# Generated local indexes, caches, logs, and IDE state.
-/.derived/
-/.cache/
-/.index/
-/.vector/
+# Generated dependencies, indexes, logs, and editor/OS noise.
+**/node_modules/
+**/__pycache__/
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+**/.cache/
+**/.derived/
+**/.index/
+**/.vector/
+*.py[cod]
 *.log
+*.tmp
+*.bak
+*.swp
+*~
 .DS_Store
 Thumbs.db
+.idea/
+.vscode/

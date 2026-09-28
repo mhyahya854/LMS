@@ -1,0 +1,24 @@
+{
+ "autoname": "UUID",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": ["canonical_course", "source_system", "external_course_id", "external_code", "external_title", "source_url", "sync_state", "last_seen_at", "source_metadata", "provenance_note"],
+ "fields": [
+  {"fieldname": "canonical_course", "fieldtype": "Link", "in_list_view": 1, "label": "Canonical course", "options": "Canonical Course", "reqd": 1},
+  {"fieldname": "source_system", "fieldtype": "Select", "in_list_view": 1, "label": "Source system", "options": "APSpace\nMoodle\nMicrosoft Teams\nMicrosoft 365\nManual Import\nOther", "reqd": 1},
+  {"fieldname": "external_course_id", "fieldtype": "Data", "in_list_view": 1, "label": "External course ID", "reqd": 1},
+  {"fieldname": "external_code", "fieldtype": "Data", "label": "External code"},
+  {"fieldname": "external_title", "fieldtype": "Data", "label": "External title"},
+  {"fieldname": "source_url", "fieldtype": "Data", "label": "Source URL"},
+  {"default": "Local only", "fieldname": "sync_state", "fieldtype": "Select", "label": "Sync state", "options": "Local only\nIn sync\nStale\nUnavailable\nRemoved upstream"},
+  {"fieldname": "last_seen_at", "fieldtype": "Datetime", "label": "Last seen at"},
+  {"fieldname": "source_metadata", "fieldtype": "Long Text", "label": "Source metadata"},
+  {"fieldname": "provenance_note", "fieldtype": "Small Text", "label": "Provenance note"}
+ ],
+ "module": "Academic",
+ "name": "External Course Mapping",
+ "permissions": [{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1}],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

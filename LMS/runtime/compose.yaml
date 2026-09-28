@@ -1,0 +1,74 @@
+name: studies
+
+services:
+  mariadb:
+    image: mariadb:11.8
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:?Run Initialize-StudiesRuntime.ps1 to create local secrets}
+      MARIADB_AUTO_UPGRADE: "1"
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+    restart: unless-stopped
+
+  redis-cache:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+  redis-queue:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+  frappe:
+    image: frappe/bench:latest
+    working_dir: /workspace/development
+    command: ["sleep", "infinity"]
+    environment:
+      SHELL: /bin/bash
+      FRAPPE_BIND_ADDR: 0.0.0.0
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:?Run Initialize-StudiesRuntime.ps1 to create local secrets}
+      SITE_ADMIN_PASSWORD: ${SITE_ADMIN_PASSWORD:?Run Initialize-StudiesRuntime.ps1 to create local secrets}
+      SITE_NAME: ${SITE_NAME:-studies.localhost}
+      STUDIES_HUB_VAULT_ROOT: /workspace/academic-vault
+    depends_on:
+      mariadb:
+        condition: service_healthy
+      redis-cache:
+        condition: service_healthy
+      redis-queue:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8000:8000"
+      - "127.0.0.1:9000:9000"
+      - "127.0.0.1:6787:6787"
+    volumes:
+      - ./bench:/workspace/development
+      - ../frappe-lms:/workspace/project/frappe-lms:ro
+      - ../studies_hub:/workspace/project/studies_hub:ro
+      - ../scripts:/workspace/project/scripts:ro
+      - "../../../Academic World/_Migration Inbox/Academic Vault Legacy:/workspace/academic-vault"
+    restart: unless-stopped
+
+volumes:
+  mariadb-data:

@@ -1,0 +1,29 @@
+{
+ "autoname": "UUID",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": ["canonical_course", "title", "due_at", "due_timezone", "status", "data_origin", "source_course_mapping", "source_system", "external_object_id", "source_title", "source_url", "source_revision", "last_seen_at", "description", "source_metadata"],
+ "fields": [
+  {"fieldname": "canonical_course", "fieldtype": "Link", "in_list_view": 1, "label": "Canonical course", "options": "Canonical Course", "reqd": 1},
+  {"fieldname": "title", "fieldtype": "Data", "in_list_view": 1, "label": "Title", "reqd": 1},
+  {"fieldname": "due_at", "fieldtype": "Datetime", "in_list_view": 1, "label": "Due at"},
+  {"default": "Asia/Riyadh", "fieldname": "due_timezone", "fieldtype": "Data", "label": "Due timezone", "reqd": 1},
+  {"default": "Open", "fieldname": "status", "fieldtype": "Select", "label": "Status", "options": "Open\nIn Progress\nSubmitted\nClosed", "reqd": 1},
+  {"default": "Personal", "fieldname": "data_origin", "fieldtype": "Select", "label": "Data origin", "options": "Source-derived\nPersonal\nTest data", "reqd": 1},
+  {"fieldname": "source_course_mapping", "fieldtype": "Link", "label": "Source course mapping", "options": "External Course Mapping"},
+  {"fieldname": "source_system", "fieldtype": "Select", "label": "Source system", "options": "APSpace\nMoodle\nMicrosoft Teams\nMicrosoft 365\nManual Import\nOther"},
+  {"fieldname": "external_object_id", "fieldtype": "Data", "label": "External object ID", "read_only": 1},
+  {"fieldname": "source_title", "fieldtype": "Data", "label": "Original source title", "read_only": 1},
+  {"fieldname": "source_url", "fieldtype": "Data", "label": "Source URL", "read_only": 1},
+  {"fieldname": "source_revision", "fieldtype": "Data", "label": "Source revision", "read_only": 1},
+  {"fieldname": "last_seen_at", "fieldtype": "Datetime", "label": "Last seen at", "read_only": 1},
+  {"fieldname": "description", "fieldtype": "Small Text", "label": "Description"},
+  {"fieldname": "source_metadata", "fieldtype": "Long Text", "label": "Source metadata", "read_only": 1}
+ ],
+ "module": "Academic",
+ "name": "Academic Assignment",
+ "permissions": [{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1}],
+ "sort_field": "due_at",
+ "sort_order": "ASC",
+ "track_changes": 1
+}

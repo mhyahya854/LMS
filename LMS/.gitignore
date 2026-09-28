@@ -1,0 +1,6 @@
+/frappe-lms/
+/frappe_docker/
+/runtime/.env
+/runtime/bench/
+/runtime/logs/
+/runtime/installers/

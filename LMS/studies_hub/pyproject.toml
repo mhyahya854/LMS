@@ -1,0 +1,15 @@
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "studies_hub"
+authors = [{ name = "Studies Workspace" }]
+description = "Local-first canonical academic course and resource management"
+readme = "README.md"
+requires-python = ">=3.10"
+dynamic = ["version"]
+dependencies = []
+
+[tool.bench.frappe-dependencies]
+frappe = ">=16.0.0,<17.0.0"

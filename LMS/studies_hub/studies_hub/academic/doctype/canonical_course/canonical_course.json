@@ -1,0 +1,23 @@
+{
+ "autoname": "UUID",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": ["title", "preferred_short_title", "institution", "program", "academic_year", "term", "status", "data_origin", "description"],
+ "fields": [
+  {"fieldname": "title", "fieldtype": "Data", "in_list_view": 1, "label": "Canonical title", "reqd": 1},
+  {"fieldname": "preferred_short_title", "fieldtype": "Data", "label": "Preferred short title"},
+  {"fieldname": "institution", "fieldtype": "Data", "label": "Institution"},
+  {"fieldname": "program", "fieldtype": "Data", "label": "Program"},
+  {"fieldname": "academic_year", "fieldtype": "Data", "label": "Academic year"},
+  {"fieldname": "term", "fieldtype": "Data", "label": "Term"},
+  {"default": "Active", "fieldname": "status", "fieldtype": "Select", "label": "Status", "options": "Active\nArchived", "reqd": 1},
+  {"default": "Personal", "fieldname": "data_origin", "fieldtype": "Select", "label": "Data origin", "options": "Source-derived\nPersonal\nTest data", "reqd": 1},
+  {"fieldname": "description", "fieldtype": "Small Text", "label": "Description"}
+ ],
+ "module": "Academic",
+ "name": "Canonical Course",
+ "permissions": [{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1}],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

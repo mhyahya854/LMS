@@ -1,0 +1,1 @@
+"""Canonical academic domain module."""

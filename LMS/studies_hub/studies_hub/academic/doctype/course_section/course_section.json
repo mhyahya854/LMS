@@ -1,0 +1,22 @@
+{
+ "autoname": "UUID",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": ["canonical_course", "parent_section", "title", "section_type", "position", "data_origin", "source_course_mapping", "source_metadata"],
+ "fields": [
+  {"fieldname": "canonical_course", "fieldtype": "Link", "in_list_view": 1, "label": "Canonical course", "options": "Canonical Course", "reqd": 1},
+  {"fieldname": "parent_section", "fieldtype": "Link", "label": "Parent section", "options": "Course Section"},
+  {"fieldname": "title", "fieldtype": "Data", "in_list_view": 1, "label": "Title", "reqd": 1},
+  {"default": "Lecture", "fieldname": "section_type", "fieldtype": "Select", "label": "Section type", "options": "Module\nWeek\nLecture\nTopic\nOther"},
+  {"default": "0", "fieldname": "position", "fieldtype": "Int", "label": "Position"},
+  {"default": "Personal", "fieldname": "data_origin", "fieldtype": "Select", "label": "Data origin", "options": "Source-derived\nPersonal\nTest data", "reqd": 1},
+  {"fieldname": "source_course_mapping", "fieldtype": "Link", "label": "Source course mapping", "options": "External Course Mapping"},
+  {"fieldname": "source_metadata", "fieldtype": "Long Text", "label": "Source metadata"}
+ ],
+ "module": "Academic",
+ "name": "Course Section",
+ "permissions": [{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1}],
+ "sort_field": "position",
+ "sort_order": "ASC",
+ "track_changes": 1
+}
